@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { v4 as uuidv4 } from "uuid";
+import { FiEdit } from "react-icons/fi";
+import { MdDeleteForever } from "react-icons/md";
+
+
 
 function App() {
   const [todo, setTodo] = useState("");
@@ -54,19 +58,20 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto bg-violet-50 my-5 rounded-xl p-5 min-h-[80vh]">
-        <div className="addTodo my-5">
+      <div className="md:container mx-2 md:mx-auto bg-violet-50 my-5 rounded-xl p-5 min-h-[80vh] md:w-1/2">
+        <h1 className="font-bold text-center text-xl">Manage your daily todo tasks.</h1>
+        <div className="addTodo my-5 flex flex-col">
           <h2 className="text-lg font-bold">Add a todo</h2>
           <input
             onChange={handleChange}
             value={todo}
             type="text"
-            className="w-80"
+            className="w-full rounded-lg px-3 py-1"
           />
           <button
             onClick={handleAdd}
             disabled={todo.length < 3}
-            className="bg-violet-800 hover:bg-violet-950 p-2 py-1 text-white rounded-md mx-6 disabled:bg-red-700"
+            className="cursor-pointer bg-violet-800 hover:bg-violet-950 p-2 py-1 text-white rounded-md my-4 disabled:bg-violet-400"
           >
             Save
           </button>
@@ -85,7 +90,7 @@ function App() {
             .map((item) => (
               <div
                 key={item.id}
-                className="todo flex justify-between w-1/4 my-3"
+                className="todo flex justify-between md:w-1/2 my-3 justify-between flex-wrap"
               >
                 <div className="flex gap-5">
                   <input
@@ -103,13 +108,13 @@ function App() {
                     onClick={() => handleEdit(item.id)}
                     className="bg-violet-800 hover:bg-violet-950 p-2 py-1 text-white rounded-md mx-1"
                   >
-                    Edit
+                    <FiEdit />
                   </button>
                   <button
                     onClick={() => handleDelete(item.id)}
                     className="bg-violet-800 hover:bg-violet-950 p-2 py-1 text-white rounded-md mx-1"
                   >
-                    Delete
+                  <MdDeleteForever />
                   </button>
                 </div>
               </div>
